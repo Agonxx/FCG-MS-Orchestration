@@ -41,7 +41,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__UsersDB=Server=sqlserver;Database=UsersDB;User Id=sa;Password=Sa12345678!;TrustServerCertificate=True
-      - JwtSettings__SecretKey=S3cr3tK3y!@#_JWT_FCG_2024$%^
+      - JwtSettings__SecretKey=S3cr3tK3y!@#_JWT_FCG_2024$%^_FiapCloudGames
       - JwtSettings__ExpiracaoHoras=2
       - RabbitMQ__Host=rabbitmq
       - RabbitMQ__VHost=/
@@ -65,7 +65,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__CatalogDB=Server=sqlserver;Database=CatalogDB;User Id=sa;Password=Sa12345678!;TrustServerCertificate=True
-      - JwtSettings__SecretKey=S3cr3tK3y!@#_JWT_FCG_2024$%^
+      - JwtSettings__SecretKey=S3cr3tK3y!@#_JWT_FCG_2024$%^_FiapCloudGames
       - JwtSettings__ExpiracaoHoras=2
       - RabbitMQ__Host=rabbitmq
       - RabbitMQ__VHost=/

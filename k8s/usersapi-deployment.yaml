@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usersapi
+  namespace: fiapcloudgames
+  labels:
+    app: usersapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: usersapi
+  template:
+    metadata:
+      labels:
+        app: usersapi
+    spec:
+      containers:
+        - name: usersapi
+          image: usersapi:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: ConnectionStrings__UsersDB
+              valueFrom:
+                secretKeyRef:
+                  name: usersapi-secret
+                  key: connection-string
+            - name: JwtSettings__SecretKey
+              valueFrom:
+                secretKeyRef:
+                  name: usersapi-secret
+                  key: jwt-secret-key
+            - name: JwtSettings__ExpiracaoHoras
+              valueFrom:
+                configMapKeyRef:
+                  name: usersapi-config
+                  key: jwt-expiracao-horas
+            - name: RabbitMQ__Host
+              valueFrom:
+                configMapKeyRef:
+                  name: usersapi-config
+                  key: rabbitmq-host
+            - name: RabbitMQ__VHost
+              valueFrom:
+                configMapKeyRef:
+                  name: usersapi-config
+                  key: rabbitmq-vhost
+            - name: RabbitMQ__Username
+              valueFrom:
+                secretKeyRef:
+                  name: usersapi-secret
+                  key: rabbitmq-username
+            - name: RabbitMQ__Password
+              valueFrom:
+                secretKeyRef:
+                  name: usersapi-secret
+                  key: rabbitmq-password
